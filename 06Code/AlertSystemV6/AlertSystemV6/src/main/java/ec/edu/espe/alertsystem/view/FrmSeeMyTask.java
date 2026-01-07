@@ -30,6 +30,12 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -38,6 +44,24 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnCompleteTask = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        MnuProfile = new javax.swing.JMenu();
+        MnuLogOut = new javax.swing.JMenuItem();
+        MnuExite = new javax.swing.JMenuItem();
+        MnuMenu = new javax.swing.JMenu();
+        MnuBactToMenu = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(200, 185, 255));
@@ -142,6 +166,40 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
         );
 
+        MnuProfile.setText("Perfil");
+
+        MnuLogOut.setText("Cerrar Sesion");
+        MnuLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOutActionPerformed(evt);
+            }
+        });
+        MnuProfile.add(MnuLogOut);
+
+        MnuExite.setText("Cerrar Programa");
+        MnuExite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExiteActionPerformed(evt);
+            }
+        });
+        MnuProfile.add(MnuExite);
+
+        jMenuBar3.add(MnuProfile);
+
+        MnuMenu.setText("Menu");
+
+        MnuBactToMenu.setText("Volver al Menu");
+        MnuBactToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBactToMenuActionPerformed(evt);
+            }
+        });
+        MnuMenu.add(MnuBactToMenu);
+
+        jMenuBar3.add(MnuMenu);
+
+        setJMenuBar(jMenuBar3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,6 +239,22 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOutActionPerformed
+
+    private void MnuBactToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBactToMenuActionPerformed
+            FrmAlertSystemMenuAssistant frmAlertSystemMenuAssistant = new FrmAlertSystemMenuAssistant();
+            frmAlertSystemMenuAssistant.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_MnuBactToMenuActionPerformed
+
+    private void MnuExiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExiteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExiteActionPerformed
     private void loadSmallTaskTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblTasks.getModel();
@@ -221,9 +295,21 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnuBactToMenu;
+    private javax.swing.JMenuItem MnuExite;
+    private javax.swing.JMenuItem MnuLogOut;
+    private javax.swing.JMenu MnuMenu;
+    private javax.swing.JMenu MnuProfile;
     private javax.swing.JButton btnCompleteTask;
     private javax.swing.JButton btnReturn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -47,6 +47,18 @@ public class FrmManageTask extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel5 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        MnuLogOut = new javax.swing.JMenuItem();
+        MnuExite = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        MnuBacktoMenu = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        MnuLogOut1 = new javax.swing.JMenuItem();
+        MnuExite1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        MnuBacktoMenu1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -67,6 +79,12 @@ public class FrmManageTask extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btnReturnToMenu = new javax.swing.JButton();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        MnuLogOut2 = new javax.swing.JMenuItem();
+        MnuExite2 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        MnuBacktoMenu2 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -78,6 +96,70 @@ public class FrmManageTask extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("Perfil");
+
+        MnuLogOut.setText("Cerrar Sesión");
+        MnuLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnuLogOut);
+
+        MnuExite.setText("Cerrar Programa");
+        MnuExite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExiteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnuExite);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Menu");
+
+        MnuBacktoMenu.setText("Back to Menu");
+        MnuBacktoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBacktoMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MnuBacktoMenu);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Perfil");
+
+        MnuLogOut1.setText("Cerrar Sesión");
+        MnuLogOut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOut1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MnuLogOut1);
+
+        MnuExite1.setText("Cerrar Programa");
+        MnuExite1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExite1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MnuExite1);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Menu");
+
+        MnuBacktoMenu1.setText("Back to Menu");
+        MnuBacktoMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBacktoMenu1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MnuBacktoMenu1);
+
+        jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -279,6 +361,40 @@ public class FrmManageTask extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jMenu5.setText("Perfil");
+
+        MnuLogOut2.setText("Cerrar Sesión");
+        MnuLogOut2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOut2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MnuLogOut2);
+
+        MnuExite2.setText("Cerrar Programa");
+        MnuExite2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExite2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MnuExite2);
+
+        jMenuBar3.add(jMenu5);
+
+        jMenu6.setText("Menu");
+
+        MnuBacktoMenu2.setText("Back to Menu");
+        MnuBacktoMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBacktoMenu2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MnuBacktoMenu2);
+
+        jMenuBar3.add(jMenu6);
+
+        setJMenuBar(jMenuBar3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -409,6 +525,54 @@ public class FrmManageTask extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOutActionPerformed
+
+    private void MnuExiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExiteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExiteActionPerformed
+
+    private void MnuBacktoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBacktoMenuActionPerformed
+        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
+        frmAlertSystemMenuBoss.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBacktoMenuActionPerformed
+
+    private void MnuLogOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOut1ActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOut1ActionPerformed
+
+    private void MnuExite1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExite1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExite1ActionPerformed
+
+    private void MnuBacktoMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBacktoMenu1ActionPerformed
+        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
+        frmAlertSystemMenuBoss.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBacktoMenu1ActionPerformed
+
+    private void MnuLogOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOut2ActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOut2ActionPerformed
+
+    private void MnuExite2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExite2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExite2ActionPerformed
+
+    private void MnuBacktoMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBacktoMenu2ActionPerformed
+        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
+        frmAlertSystemMenuBoss.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBacktoMenu2ActionPerformed
     private void loadTaskTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
@@ -536,6 +700,15 @@ public class FrmManageTask extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnuBacktoMenu;
+    private javax.swing.JMenuItem MnuBacktoMenu1;
+    private javax.swing.JMenuItem MnuBacktoMenu2;
+    private javax.swing.JMenuItem MnuExite;
+    private javax.swing.JMenuItem MnuExite1;
+    private javax.swing.JMenuItem MnuExite2;
+    private javax.swing.JMenuItem MnuLogOut;
+    private javax.swing.JMenuItem MnuLogOut1;
+    private javax.swing.JMenuItem MnuLogOut2;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnReturnToMenu;
@@ -548,6 +721,15 @@ public class FrmManageTask extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

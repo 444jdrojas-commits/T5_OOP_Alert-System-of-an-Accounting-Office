@@ -72,6 +72,12 @@ public class FrmAddBussines extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         nbtnReturnToMenu = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        MnuLogOut = new javax.swing.JMenuItem();
+        MnuExite = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        MnuBacktoMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -344,6 +350,40 @@ public class FrmAddBussines extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("Perfil");
+
+        MnuLogOut.setText("Cerrar Sesión");
+        MnuLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnuLogOut);
+
+        MnuExite.setText("Cerrar Programa");
+        MnuExite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExiteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnuExite);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Menu");
+
+        MnuBacktoMenu.setText("Back to Menu");
+        MnuBacktoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBacktoMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MnuBacktoMenu);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -490,6 +530,22 @@ public class FrmAddBussines extends javax.swing.JFrame {
      this.dispose();
     }//GEN-LAST:event_nbtnReturnToMenuActionPerformed
 
+    private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOutActionPerformed
+
+    private void MnuExiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExiteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExiteActionPerformed
+
+    private void MnuBacktoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBacktoMenuActionPerformed
+        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
+        frmAlertSystemMenuBoss.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBacktoMenuActionPerformed
+
     private void readValuesBussines() {
 
         String name = txtNameBussines.getText();
@@ -563,6 +619,9 @@ public class FrmAddBussines extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnuBacktoMenu;
+    private javax.swing.JMenuItem MnuExite;
+    private javax.swing.JMenuItem MnuLogOut;
     private javax.swing.JButton btnSaveBussines;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.github.lgooddatepicker.components.DatePicker dtAuditDay;
@@ -583,6 +642,9 @@ public class FrmAddBussines extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

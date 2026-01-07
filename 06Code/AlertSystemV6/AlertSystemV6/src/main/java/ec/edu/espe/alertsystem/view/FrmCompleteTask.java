@@ -97,7 +97,7 @@ public class FrmCompleteTask extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(cmbIdTask, javax.swing.GroupLayout.Alignment.LEADING, 0, 111, Short.MAX_VALUE)
                     .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +110,7 @@ public class FrmCompleteTask extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(200, 185, 255));
@@ -122,8 +122,8 @@ public class FrmCompleteTask extends javax.swing.JFrame {
             }
         });
 
-        btnReturn.setText("Volver al Menu");
         btnReturn.setBackground(new java.awt.Color(165, 215, 255));
+        btnReturn.setText("Volver al Menu");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReturnActionPerformed(evt);

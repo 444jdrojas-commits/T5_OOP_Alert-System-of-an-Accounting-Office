@@ -48,6 +48,12 @@ public class FrmSeeMyPerformanceIndicators extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblPerformanceIndicator = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        MnuProfile = new javax.swing.JMenu();
+        MnuLogOut = new javax.swing.JMenuItem();
+        MnuExite = new javax.swing.JMenuItem();
+        MnuMenu = new javax.swing.JMenu();
+        MnuBactToMenu = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -188,6 +194,40 @@ public class FrmSeeMyPerformanceIndicators extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
+        MnuProfile.setText("Perfil");
+
+        MnuLogOut.setText("Cerrar Sesion");
+        MnuLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOutActionPerformed(evt);
+            }
+        });
+        MnuProfile.add(MnuLogOut);
+
+        MnuExite.setText("Cerrar Programa");
+        MnuExite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExiteActionPerformed(evt);
+            }
+        });
+        MnuProfile.add(MnuExite);
+
+        jMenuBar3.add(MnuProfile);
+
+        MnuMenu.setText("Menu");
+
+        MnuBactToMenu.setText("Volver al Menu");
+        MnuBactToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBactToMenuActionPerformed(evt);
+            }
+        });
+        MnuMenu.add(MnuBactToMenu);
+
+        jMenuBar3.add(MnuMenu);
+
+        setJMenuBar(jMenuBar3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,6 +260,22 @@ public class FrmSeeMyPerformanceIndicators extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOutActionPerformed
+
+    private void MnuExiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExiteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExiteActionPerformed
+
+    private void MnuBactToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBactToMenuActionPerformed
+        FrmAlertSystemMenuAssistant frmAlertSystemMenuAssistant = new FrmAlertSystemMenuAssistant();
+        frmAlertSystemMenuAssistant.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBactToMenuActionPerformed
 
     private void loadSummaryTable() {
 
@@ -330,8 +386,14 @@ public class FrmSeeMyPerformanceIndicators extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnuBactToMenu;
+    private javax.swing.JMenuItem MnuExite;
+    private javax.swing.JMenuItem MnuLogOut;
+    private javax.swing.JMenu MnuMenu;
+    private javax.swing.JMenu MnuProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

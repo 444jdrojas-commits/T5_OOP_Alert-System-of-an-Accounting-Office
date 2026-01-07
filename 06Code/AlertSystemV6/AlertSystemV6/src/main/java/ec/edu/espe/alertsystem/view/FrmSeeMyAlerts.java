@@ -44,6 +44,12 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
         tblAssistantTask = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnReturn = new javax.swing.JButton();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        MnuProfile = new javax.swing.JMenu();
+        MnuLogOut = new javax.swing.JMenuItem();
+        MnuExite = new javax.swing.JMenuItem();
+        MnuMenu = new javax.swing.JMenu();
+        MnuBactToMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(200, 185, 255));
@@ -98,7 +104,7 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -128,6 +134,40 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
                 .addComponent(btnReturn)
                 .addGap(30, 30, 30))
         );
+
+        MnuProfile.setText("Perfil");
+
+        MnuLogOut.setText("Cerrar Sesion");
+        MnuLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOutActionPerformed(evt);
+            }
+        });
+        MnuProfile.add(MnuLogOut);
+
+        MnuExite.setText("Cerrar Programa");
+        MnuExite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExiteActionPerformed(evt);
+            }
+        });
+        MnuProfile.add(MnuExite);
+
+        jMenuBar3.add(MnuProfile);
+
+        MnuMenu.setText("Menu");
+
+        MnuBactToMenu.setText("Volver al Menu");
+        MnuBactToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBactToMenuActionPerformed(evt);
+            }
+        });
+        MnuMenu.add(MnuBactToMenu);
+
+        jMenuBar3.add(MnuMenu);
+
+        setJMenuBar(jMenuBar3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,6 +202,22 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOutActionPerformed
+
+    private void MnuExiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExiteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExiteActionPerformed
+
+    private void MnuBactToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBactToMenuActionPerformed
+        FrmAlertSystemMenuAssistant frmAlertSystemMenuAssistant = new FrmAlertSystemMenuAssistant();
+        frmAlertSystemMenuAssistant.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBactToMenuActionPerformed
 
     private void loadAssistantTasks() {
 
@@ -244,8 +300,14 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnuBactToMenu;
+    private javax.swing.JMenuItem MnuExite;
+    private javax.swing.JMenuItem MnuLogOut;
+    private javax.swing.JMenu MnuMenu;
+    private javax.swing.JMenu MnuProfile;
     private javax.swing.JButton btnReturn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

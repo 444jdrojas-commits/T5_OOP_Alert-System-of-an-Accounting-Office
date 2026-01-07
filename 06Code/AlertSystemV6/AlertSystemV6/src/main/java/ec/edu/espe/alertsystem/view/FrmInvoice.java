@@ -47,6 +47,12 @@ public class FrmInvoice extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnReturn = new javax.swing.JButton();
         btnCompletePayment = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        MnuLogOut = new javax.swing.JMenuItem();
+        MnuExite = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        MnuBacktoMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +161,40 @@ public class FrmInvoice extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("Perfil");
+
+        MnuLogOut.setText("Cerrar Sesión");
+        MnuLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuLogOutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnuLogOut);
+
+        MnuExite.setText("Cerrar Programa");
+        MnuExite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuExiteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnuExite);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Menu");
+
+        MnuBacktoMenu.setText("Back to Menu");
+        MnuBacktoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuBacktoMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MnuBacktoMenu);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,6 +265,22 @@ public class FrmInvoice extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Formato de fecha inválido.");
         }
     }//GEN-LAST:event_btnCompletePaymentActionPerformed
+
+    private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
+        FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
+        frmAlertSystemLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuLogOutActionPerformed
+
+    private void MnuExiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuExiteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MnuExiteActionPerformed
+
+    private void MnuBacktoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuBacktoMenuActionPerformed
+        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
+        frmAlertSystemMenuBoss.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MnuBacktoMenuActionPerformed
 
     private void loadInvoicesTable() {
 
@@ -340,11 +396,17 @@ public class FrmInvoice extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnuBacktoMenu;
+    private javax.swing.JMenuItem MnuExite;
+    private javax.swing.JMenuItem MnuLogOut;
     private javax.swing.JButton btnCompletePayment;
     private javax.swing.JButton btnReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
