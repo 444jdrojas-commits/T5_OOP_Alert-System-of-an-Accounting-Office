@@ -18,7 +18,7 @@ public class EmailSender {
     ) {
 
         final String fromEmail = "v4485007@gmail.com";
-        final String password = "xhgryyiacmxdmvrl"; // contraseña de aplicación
+        final String password = "xhgryyiacmxdmvrl"; 
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

@@ -227,7 +227,7 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
     MongoCollection<Document> taskCollection =
             MongoConnection.getConnection().getCollection("tasks");
 
-    FindIterable<Document> tasks = taskCollection.find(Filters.eq("assignedTo", "1"));
+    FindIterable<Document> tasks = taskCollection.find(Filters.eq("assignedTo", "Paulo Ramos"));
 
     for (Document doc : tasks) {
 

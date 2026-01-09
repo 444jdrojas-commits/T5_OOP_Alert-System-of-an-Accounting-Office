@@ -1,5 +1,6 @@
 package ec.edu.espe.alertsystem.view;
 
+import com.mongodb.client.model.Filters;
 import java.util.HashMap;
 import java.util.Map;
 import ec.edu.espe.alertsystem.controller.InvoiceController;
@@ -7,6 +8,7 @@ import ec.edu.espe.alertsystem.controller.TaskController;
 import ec.edu.espe.alertsystem.model.Session;
 import ec.edu.espe.alertsystem.model.Task;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -233,20 +235,33 @@ public class FrmCompleteTask extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
-
     private void loadTaskComboBox() {
         cmbIdTask.removeAllItems();
         taskById.clear();
 
-        List<Task> tasks = taskController.getTasksForAssistant(Session.getAssistantId());
-        for (Task task : tasks) {
-            String id = String.valueOf(task.getId());
-            taskById.put(id, task);
-            cmbIdTask.addItem(id);
-            System.out.println("SESSION assistantId=[" + Session.getAssistantId() + "]");
+        String assistantName = Session.getAssistantName();
 
+        if (assistantName == null || assistantName.isEmpty()) {
+            System.out.println("ERROR: assistantName es null o vacío");
+            return;
         }
 
+        List<Task> tasks = taskController.getTasksForAssistant(assistantName);
+
+        if (tasks == null || tasks.isEmpty()) {
+            System.out.println("No hay tareas para el asistente: " + assistantName);
+            return;
+        }
+
+        for (Task task : tasks) {
+            if (task != null && !"Completada".equalsIgnoreCase(task.getStatus())) {
+                String key = String.valueOf(task.getId());
+                taskById.put(key, task);
+                cmbIdTask.addItem(key);
+            }
+        }
+
+        System.out.println("SESSION assistantName=[" + assistantName + "]");
     }
 
     /**

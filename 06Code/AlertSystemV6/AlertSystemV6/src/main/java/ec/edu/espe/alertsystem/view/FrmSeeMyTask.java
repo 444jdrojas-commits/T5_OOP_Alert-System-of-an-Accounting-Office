@@ -262,7 +262,7 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
 
         TaskController controller = new TaskController();
 
-        List<Object[]> rows = controller.getTasksByAssistant("1");
+        List<Object[]> rows = controller.getTasksByAssistant("Paulo Ramos");
 
         for (Object[] row : rows) {
             model.addRow(row);

@@ -286,7 +286,7 @@ public class FrmSeeMyPerformanceIndicators extends javax.swing.JFrame {
                 = MongoConnection.getConnection().getCollection("tasks");
 
         FindIterable<Document> tasks
-                = taskCollection.find(Filters.eq("assignedTo", "1"));
+                = taskCollection.find(Filters.eq("assignedTo", "Paulo Ramos"));
 
         int total = 0;
         int completed = 0;

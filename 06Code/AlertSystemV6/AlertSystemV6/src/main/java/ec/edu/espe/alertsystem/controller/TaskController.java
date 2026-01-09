@@ -130,11 +130,12 @@ public class TaskController {
         return rows;
     }
 
-    public List<Task> getTasksForAssistant(String assistantId) {
+    public List<Task> getTasksForAssistant(String assistantName) {
         List<Task> tasks = new ArrayList<>();
 
         FindIterable<org.bson.Document> docs
-                = getCollection().find(Filters.eq("assignedTo", assistantId));
+                = getCollection().find(Filters.eq("assignedTo", assistantName));
+
         for (org.bson.Document doc : docs) {
             Task task = new Task();
 
@@ -176,7 +177,6 @@ public class TaskController {
         }
 
         return tasks;
-
     }
 
     public List<Task> getTasksWithFilters(
