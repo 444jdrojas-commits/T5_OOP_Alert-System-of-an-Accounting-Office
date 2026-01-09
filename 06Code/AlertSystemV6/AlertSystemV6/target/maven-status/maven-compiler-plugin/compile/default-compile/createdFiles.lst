@@ -25,6 +25,7 @@ ec\edu\espe\alertsystem\view\FrmManageTask$13.class
 ec\edu\espe\alertsystem\model\Address.class
 ec\edu\espe\alertsystem\model\Audit.class
 ec\edu\espe\alertsystem\view\FrmAddBussines$2.class
+ec\edu\espe\alertsystem\controller\EmailSender$1.class
 ec\edu\espe\alertsystem\controller\AssistantController.class
 ec\edu\espe\alertsystem\model\Task.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuAssistant.class
@@ -44,6 +45,8 @@ ec\edu\espe\alertsystem\view\FrmManageCustomer$6.class
 ec\edu\espe\alertsystem\view\FrmAddNaturalPerson$6.class
 ec\edu\espe\alertsystem\controller\MongoConnection.class
 ec\edu\espe\alertsystem\model\Boss.class
+ec\edu\espe\alertsystem\controller\EmailSender.class
+ec\edu\espe\alertsystem\view\FrmInvoice$6.class
 ec\edu\espe\alertsystem\view\FrmSeeMyAlerts$2.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuAssistant$2.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuBoss$6.class
@@ -66,6 +69,7 @@ ec\edu\espe\alertsystem\view\FrmAlertSystemMenuAssistant$1.class
 ec\edu\espe\alertsystem\view\FrmSeeMyAlerts$1.class
 ec\edu\espe\alertsystem\controller\InvoiceController.class
 ec\edu\espe\alertsystem\view\FrmProgressBar.class
+ec\edu\espe\alertsystem\view\FrmManageTask$14.class
 ec\edu\espe\alertsystem\view\FrmManageCustomer$1.class
 ec\edu\espe\alertsystem\view\FrmAddBussines$1.class
 ec\edu\espe\alertsystem\view\FrmTask.class
@@ -115,12 +119,14 @@ ec\edu\espe\alertsystem\view\FrmInvoice$3.class
 ec\edu\espe\alertsystem\controller\BusinessController.class
 ec\edu\espe\alertsystem\view\FrmManageCustomer$3.class
 ec\edu\espe\alertsystem\view\FrmSeeMyPerformanceIndicators$3.class
+ec\edu\espe\alertsystem\controller\CustomerController.class
 ec\edu\espe\alertsystem\view\FrmAssistant.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemLogin$2.class
 ec\edu\espe\alertsystem\model\Customer.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuAssistant$5.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuBoss$3.class
 ec\edu\espe\alertsystem\view\FrmSeeMyTask$4.class
+ec\edu\espe\alertsystem\controller\InvoicePDFGenerator.class
 ec\edu\espe\alertsystem\view\FrmAddNaturalPerson$2.class
 ec\edu\espe\alertsystem\view\FrmPerformanceIndicator$2.class
 ec\edu\espe\alertsystem\view\FrmTask$5.class

@@ -6,6 +6,7 @@ import ec.edu.espe.alertsystem.model.Task;
 import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import utils.Manage;
 import static utils.Manage.loadCustomersComboBox;
 import utils.Validation;
 
@@ -23,6 +24,7 @@ public class FrmTask extends javax.swing.JFrame {
     public FrmTask() {
         initComponents();
         loadCustomersComboBox(cmbCustomer, false);
+        Manage.loadAssistantsComboBox(cmbAssignedTo, false);
     }
 
     /**
@@ -75,8 +77,8 @@ public class FrmTask extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(200, 185, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Tareas");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,8 +137,6 @@ public class FrmTask extends javax.swing.JFrame {
         cmbStatusDocument.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Completada" }));
 
         jLabel12.setText("Asistente:");
-
-        cmbAssignedTo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -235,8 +235,8 @@ public class FrmTask extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(200, 185, 255));
 
-        btnReturn.setBackground(new java.awt.Color(165, 215, 255));
         btnReturn.setText("Volver al Menu");
+        btnReturn.setBackground(new java.awt.Color(165, 215, 255));
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReturnActionPerformed(evt);

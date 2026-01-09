@@ -94,7 +94,30 @@ public class NaturalPersonController {
 
         col.updateOne(filtro, update);
     }
-    
-    
+
+    public static NaturalPerson getPersonByName(String name) {
+
+        MongoCollection<Document> collection
+                = MongoConnection.getConnection().getCollection("naturalPersons");
+
+        Document doc = collection.find(
+                new Document("name", name)
+        ).first();
+
+        if (doc == null) {
+            return null;
+        }
+
+        NaturalPerson person = new NaturalPerson();
+        person.setName(doc.getString("name"));
+        person.setIdentification(doc.getString("identification"));
+        person.setNationality(doc.getString("nationality"));
+        person.setPhone(doc.getString("phone"));
+        person.setEmail(doc.getString("email"));
+        person.setOccupation(doc.getString("occupation"));
+        person.setGender(doc.getString("gender"));
+
+        return person;
+    }
 
 }

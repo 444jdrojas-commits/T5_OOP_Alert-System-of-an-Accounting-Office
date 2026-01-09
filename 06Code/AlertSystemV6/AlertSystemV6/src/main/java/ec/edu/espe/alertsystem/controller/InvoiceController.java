@@ -4,6 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Sorts;
+import ec.edu.espe.alertsystem.model.Invoice;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,19 +20,19 @@ public class InvoiceController {
 
     public void saveInvoice(double amount, String details) {
 
-    MongoCollection<Document> collection
-            = MongoConnection.getConnection().getCollection("invoices");
+        MongoCollection<Document> collection
+                = MongoConnection.getConnection().getCollection("invoices");
 
-    int nextInvoiceNumber = getNextInvoiceNumber();
+        int nextInvoiceNumber = getNextInvoiceNumber();
 
-    Document doc = new Document()
-            .append("invoiceNumber", nextInvoiceNumber)
-            .append("amountPaid", amount)
-            .append("details", details)
-            .append("status", "Pendiente");
+        Document doc = new Document()
+                .append("invoiceNumber", nextInvoiceNumber)
+                .append("amountPaid", amount)
+                .append("details", details)
+                .append("status", "Pendiente");
 
-    collection.insertOne(doc);
-}
+        collection.insertOne(doc);
+    }
 
     private int getNextInvoiceNumber() {
 
@@ -83,7 +84,42 @@ public class InvoiceController {
 
         collection.updateOne(filter, update);
     }
-    
-    
+
+    public static Invoice getInvoiceByNumber(int invoiceNumber) {
+
+        MongoCollection<Document> collection
+                = MongoConnection.getDatabase().getCollection("invoices");
+
+        Document doc = collection.find(
+                new Document("invoiceNumber", invoiceNumber)
+        ).first();
+
+        if (doc == null) {
+            return null;
+        }
+
+        Invoice invoice = new Invoice();
+        invoice.setInvoiceNumber(doc.getInteger("invoiceNumber"));
+
+        Number amount = (Number) doc.get("amountPaid");
+        invoice.setAmountPaid((float) amount.doubleValue());
+
+        invoice.setDetails(doc.getString("details"));
+        invoice.setStatus(doc.getString("status"));
+        invoice.setPaymentDate(doc.getDate("paymentDate"));
+
+        return invoice;
+    }
+
+    public static String extractClientName(String details) {
+        if (details == null) {
+            return null;
+        }
+
+        if (details.contains("Cliente:")) {
+            return details.substring(details.indexOf("Cliente:") + 8).trim();
+        }
+        return null;
+    }
 
 }

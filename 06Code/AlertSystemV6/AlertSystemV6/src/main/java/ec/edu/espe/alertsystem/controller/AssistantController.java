@@ -1,19 +1,13 @@
 package ec.edu.espe.alertsystem.controller;
 
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
-import java.text.SimpleDateFormat;
 import org.bson.Document;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *

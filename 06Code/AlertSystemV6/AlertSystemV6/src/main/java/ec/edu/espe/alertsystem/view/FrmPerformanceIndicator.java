@@ -360,7 +360,7 @@ public class FrmPerformanceIndicator extends javax.swing.JFrame {
                     = taskCollection.find(Filters.eq("assignedTo", assistant));
 
             Object[] row = performanceController.calculatePerformanceRow(
-                    "Asistente " + assistant,
+                    "" + assistant,
                     tasks,
                     true
             );

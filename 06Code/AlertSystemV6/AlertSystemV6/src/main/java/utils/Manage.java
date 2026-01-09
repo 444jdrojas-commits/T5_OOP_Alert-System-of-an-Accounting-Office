@@ -43,4 +43,28 @@ public class Manage {
         }
     }
 
+    public static void loadAssistantsComboBox(
+            JComboBox<String> cmbAssistant,
+            boolean includeAll
+    ) {
+
+        cmbAssistant.removeAllItems();
+
+        if (includeAll) {
+            cmbAssistant.addItem("Todos");
+        }
+
+        MongoDatabase database = MongoConnection.getDatabase();
+
+        MongoCollection<Document> assistants
+                = database.getCollection("assistants");
+
+        for (Document doc : assistants.find()) {
+            String name = doc.getString("name");
+            if (name != null && !name.isEmpty()) {
+                cmbAssistant.addItem(name);
+            }
+        }
+    }
+
 }

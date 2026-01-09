@@ -11,10 +11,13 @@ public class Invoice {
 
     private int invoiceNumber;
     private Date paymentDate;
-    private float amountPaid;
+    private double amountPaid;
     private String details;
     private String status;
 
+    public Invoice(){   
+    }
+    
     public Invoice(int invoiceNumber, Date paymentDate, float amountPaid, String details, String status) {
         this.invoiceNumber = invoiceNumber;
         this.paymentDate = paymentDate;
@@ -39,7 +42,7 @@ public class Invoice {
         this.paymentDate = paymentDate;
     }
 
-    public float getAmountPaid() {
+    public double getAmountPaid() {
         return amountPaid;
     }
 

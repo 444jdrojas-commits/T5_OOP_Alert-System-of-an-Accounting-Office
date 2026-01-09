@@ -1,8 +1,11 @@
 package ec.edu.espe.alertsystem.view;
 
-import com.mongodb.client.MongoCollection;
+import ec.edu.espe.alertsystem.controller.CustomerController;
+import ec.edu.espe.alertsystem.controller.EmailSender;
 import ec.edu.espe.alertsystem.controller.InvoiceController;
-import ec.edu.espe.alertsystem.controller.MongoConnection;
+import ec.edu.espe.alertsystem.controller.InvoicePDFGenerator;
+import ec.edu.espe.alertsystem.model.Customer;
+import ec.edu.espe.alertsystem.model.Invoice;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,6 +50,7 @@ public class FrmInvoice extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnReturn = new javax.swing.JButton();
         btnCompletePayment = new javax.swing.JButton();
+        btnGenerateInvoice = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MnuLogOut = new javax.swing.JMenuItem();
@@ -66,7 +70,7 @@ public class FrmInvoice extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+                .addGap(252, 252, 252)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,6 +144,13 @@ public class FrmInvoice extends javax.swing.JFrame {
             }
         });
 
+        btnGenerateInvoice.setText("Generar Factura");
+        btnGenerateInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateInvoiceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -147,9 +158,11 @@ public class FrmInvoice extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnReturn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addComponent(btnCompletePayment)
-                .addGap(178, 178, 178))
+                .addGap(32, 32, 32)
+                .addComponent(btnGenerateInvoice)
+                .addGap(71, 71, 71))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +170,8 @@ public class FrmInvoice extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn)
-                    .addComponent(btnCompletePayment))
+                    .addComponent(btnCompletePayment)
+                    .addComponent(btnGenerateInvoice))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -282,6 +296,61 @@ public class FrmInvoice extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_MnuBacktoMenuActionPerformed
 
+    private void btnGenerateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateInvoiceActionPerformed
+        int selectedRow = tblInvoice.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una factura");
+            return;
+        }
+
+        String status = tblInvoice.getValueAt(selectedRow, 5).toString();
+
+        if (!status.equalsIgnoreCase("Pagado")) {
+            JOptionPane.showMessageDialog(this,
+                    "La factura debe estar pagada");
+            return;
+        }
+
+        int invoiceNumber = Integer.parseInt(
+                tblInvoice.getValueAt(selectedRow, 0).toString()
+        );
+
+        Invoice invoice = InvoiceController.getInvoiceByNumber(invoiceNumber);
+
+        if (invoice == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró la factura");
+            return;
+        }
+
+        String clientName = InvoiceController.extractClientName(invoice.getDetails());
+
+        if (clientName == null) {
+            JOptionPane.showMessageDialog(this, "No se pudo identificar el cliente");
+            return;
+        }
+
+        Customer customer = CustomerController.getCustomerByName(clientName);
+
+        if (customer == null) {
+            JOptionPane.showMessageDialog(this, "Cliente no encontrado en el sistema");
+            return;
+        }
+
+        String pdfPath = InvoicePDFGenerator.generate(invoice, customer);
+
+        EmailSender.sendInvoiceByEmail(
+                customer.getEmail(),
+                customer.getName(),
+                pdfPath
+        );
+
+        JOptionPane.showMessageDialog(this,
+                "Factura generada y enviada al correo del cliente");
+
+
+    }//GEN-LAST:event_btnGenerateInvoiceActionPerformed
+
     private void loadInvoicesTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblInvoice.getModel();
@@ -338,7 +407,7 @@ public class FrmInvoice extends javax.swing.JFrame {
                     double total = InvoiceController.calcularTotal(subtotal);
 
                     model.setValueAt(
-                            String.format("%.2f", total), // Total con 2 decimales
+                            String.format("%.2f", total),
                             i,
                             3
                     );
@@ -354,10 +423,10 @@ public class FrmInvoice extends javax.swing.JFrame {
         double suma = 0.0;
 
         for (int i = 0; i < model.getRowCount(); i++) {
-            Object totalObj = model.getValueAt(i, 3); // Columna 3 = Total
+            Object totalObj = model.getValueAt(i, 3);
 
             if (totalObj != null) {
-                String totalStr = totalObj.toString().replace(",", "."); // reemplazar coma
+                String totalStr = totalObj.toString().replace(",", ".");
                 try {
                     double total = Double.parseDouble(totalStr);
                     suma += total;
@@ -400,6 +469,7 @@ public class FrmInvoice extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuExite;
     private javax.swing.JMenuItem MnuLogOut;
     private javax.swing.JButton btnCompletePayment;
+    private javax.swing.JButton btnGenerateInvoice;
     private javax.swing.JButton btnReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

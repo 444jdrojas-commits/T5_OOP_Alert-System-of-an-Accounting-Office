@@ -9,15 +9,14 @@ import ec.edu.espe.alertsystem.model.Task;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import utils.Manage;
 import utils.Validation;
 
 /**
@@ -33,7 +32,7 @@ public class FrmManageTask extends javax.swing.JFrame {
      */
     public FrmManageTask() {
         initComponents();
-        loadTaskTable();
+        Manage.loadAssistantsComboBox(cmbAssistant, true);
         loadTaskTableWithFilters("", "Todos", "Todos");
     }
 
@@ -166,8 +165,8 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(200, 185, 255));
 
-        jLabel1.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
         jLabel1.setText("TAREA");
+        jLabel1.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,24 +187,28 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(200, 185, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Buscar por:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Asistente:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        cmbAssistant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Paulo Ramos", "Josue Rojas", "Thais Santorum" }));
+        cmbAssistant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAssistantActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Nombre Cliente:");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         txtName.setToolTipText("Solo Letras");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Estado:");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        btnFind.setBackground(new java.awt.Color(165, 215, 255));
         btnFind.setText("Buscar");
+        btnFind.setBackground(new java.awt.Color(165, 215, 255));
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
@@ -292,24 +295,24 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(200, 185, 255));
 
-        btnUpdate.setBackground(new java.awt.Color(165, 215, 255));
         btnUpdate.setText("Actualizar");
+        btnUpdate.setBackground(new java.awt.Color(165, 215, 255));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(165, 215, 255));
         btnDelete.setText("Eliminar");
+        btnDelete.setBackground(new java.awt.Color(165, 215, 255));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Opciones:");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -443,7 +446,6 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         loadTaskTableWithFilters(nombre, asistente, estado);
 
-
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnReturnToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToMenuActionPerformed
@@ -573,6 +575,10 @@ public class FrmManageTask extends javax.swing.JFrame {
         frmAlertSystemMenuBoss.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MnuBacktoMenu2ActionPerformed
+
+    private void cmbAssistantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAssistantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAssistantActionPerformed
     private void loadTaskTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
@@ -605,41 +611,6 @@ public class FrmManageTask extends javax.swing.JFrame {
         }
     }
 
-    private void findTask(String estado, String asistente) {
-
-        DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
-        model.setRowCount(0);
-
-        MongoCollection<Document> taskCollection
-                = MongoConnection.getConnection().getCollection("tasks");
-
-        List<Bson> filtros = new ArrayList<>();
-
-        if (!estado.equals("Todos")) {
-            filtros.add(Filters.eq("status", estado));
-        }
-
-        if (!asistente.isEmpty()) {
-            filtros.add(Filters.regex("assistantName", asistente, "i"));
-        }
-
-        Bson query = filtros.isEmpty()
-                ? new Document()
-                : Filters.and(filtros);
-
-        for (Document doc : taskCollection.find(query)) {
-
-            model.addRow(new Object[]{
-                doc.getInteger("id"),
-                doc.getString("description"),
-                doc.getString("customer"),
-                doc.getString("status"),
-                doc.getString("assistantName"),
-                doc.getString("deliveryDate")
-            });
-        }
-    }
-
     private void loadTaskTableWithFilters(String cliente, String asistente, String estado) {
 
         DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
@@ -648,7 +619,6 @@ public class FrmManageTask extends javax.swing.JFrame {
         TaskController controller = new TaskController();
         List<Task> tasks = controller.getTasksWithFilters(cliente, asistente, estado);
 
-        Map<String, String> assistantMap = AssistantController.getAssistantMap();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
 
         for (Task task : tasks) {
@@ -658,17 +628,12 @@ public class FrmManageTask extends javax.swing.JFrame {
                 dateString = sdf.format(task.getDeliveryDate());
             }
 
-            String assistantName = assistantMap.getOrDefault(
-                    task.getAssignedTo(),
-                    "Desconocido"
-            );
-
             model.addRow(new Object[]{
                 task.getId(),
                 task.getDescription(),
                 task.getCustomer(),
                 task.getStatus(),
-                assistantName,
+                task.getAssignedTo(),
                 dateString
             });
         }

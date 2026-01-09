@@ -108,4 +108,28 @@ public class BusinessController {
         col.updateOne(filtro, update);
     }
 
+    public static Business getBusinessByName(String name) {
+
+        MongoCollection<Document> collection
+                = MongoConnection.getConnection().getCollection("businesses");
+
+        Document doc = collection.find(
+                new Document("nameBusiness", name)
+        ).first();
+
+        if (doc == null) {
+            return null;
+        }
+
+        Business business = new Business();
+        business.setName(doc.getString("nameBusiness"));
+        business.setLegalRepresentative(doc.getString("legalRepresentative"));
+        business.setTypeBusiness(doc.getString("typeBusiness"));
+        business.setRuc(doc.getString("ruc"));
+        business.setPhone(doc.getString("phone"));
+        business.setEmail(doc.getString("email"));
+
+        return business;
+    }
+
 }

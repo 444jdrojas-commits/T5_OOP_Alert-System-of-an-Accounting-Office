@@ -392,10 +392,7 @@
         <Component class="javax.swing.JComboBox" name="cmbAssignedTo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="1"/>
-                <StringItem index="1" value="2"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
