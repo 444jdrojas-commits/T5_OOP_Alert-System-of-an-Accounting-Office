@@ -1,6 +1,7 @@
 package ec.edu.espe.alertsystem.view;
 
 import ec.edu.espe.alertsystem.controller.TaskController;
+import ec.edu.espe.alertsystem.model.Session;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -262,7 +263,7 @@ public class FrmSeeMyTask extends javax.swing.JFrame {
 
         TaskController controller = new TaskController();
 
-        List<Object[]> rows = controller.getTasksByAssistant("Paulo Ramos");
+        List<Object[]> rows = controller.getTasksByAssistant( Session.getAssistantName());
 
         for (Object[] row : rows) {
             model.addRow(row);

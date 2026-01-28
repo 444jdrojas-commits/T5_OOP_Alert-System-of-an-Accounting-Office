@@ -1,7 +1,9 @@
 package ec.edu.espe.alertsystem.controller;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
+import ec.edu.espe.alertsystem.model.Assistant;
 import org.bson.Document;
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,13 +81,44 @@ public class AssistantController {
 
         for (Document doc : assistants.find()) {
             map.put(
-                    String.valueOf(doc.get("id")), 
+                    String.valueOf(doc.get("id")),
                     doc.getString("name")
             );
 
         }
 
         return map;
+    }
+
+    public static Assistant findByName(String name) {
+
+        MongoCollection<Document> collection
+                = MongoConnection.getConnection().getCollection("assistants");
+
+        Document doc = collection.find(
+                Filters.eq("name", name)
+        ).first();
+
+        if (doc == null) {
+            return null;
+        }
+
+        Assistant assistant = new Assistant();
+
+        assistant.setId(doc.getInteger("id"));
+        assistant.setName(doc.getString("name"));
+        Object birthObj = doc.get("birthDate");
+
+        if (birthObj instanceof Date) {
+            assistant.setBirthDate((Date) birthObj);
+        }
+
+        assistant.setPhone(doc.getString("phone"));
+        assistant.setEmail(doc.getString("email"));
+        assistant.setUser(doc.getString("user"));
+        assistant.setPassword(doc.getString("password"));
+
+        return assistant;
     }
 
 }

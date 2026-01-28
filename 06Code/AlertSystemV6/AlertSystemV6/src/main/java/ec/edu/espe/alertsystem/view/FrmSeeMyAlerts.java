@@ -4,6 +4,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import ec.edu.espe.alertsystem.controller.MongoConnection;
+import ec.edu.espe.alertsystem.model.Session;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
@@ -227,7 +228,7 @@ public class FrmSeeMyAlerts extends javax.swing.JFrame {
     MongoCollection<Document> taskCollection =
             MongoConnection.getConnection().getCollection("tasks");
 
-    FindIterable<Document> tasks = taskCollection.find(Filters.eq("assignedTo", "Paulo Ramos"));
+    FindIterable<Document> tasks = taskCollection.find(Filters.eq("assignedTo",  Session.getAssistantName()));
 
     for (Document doc : tasks) {
 

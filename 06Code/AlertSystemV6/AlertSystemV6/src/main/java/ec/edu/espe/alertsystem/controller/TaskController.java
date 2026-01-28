@@ -3,19 +3,25 @@ package ec.edu.espe.alertsystem.controller;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.alertsystem.model.Assistant;
 import ec.edu.espe.alertsystem.model.Document;
+import ec.edu.espe.alertsystem.model.Session;
 import ec.edu.espe.alertsystem.model.Task;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  *
  * @author Paulo Ramos
  */
 public class TaskController {
+
+    private static final Set<Integer> notifiedTasks = new HashSet<>();
 
     private MongoCollection<org.bson.Document> getCollection() {
         return MongoConnection.getConnection().getCollection("tasks");
@@ -171,6 +177,30 @@ public class TaskController {
                 }
 
                 task.setDocument(d);
+            }
+
+            Date deliveryDate = task.getDeliveryDate();
+
+            if (deliveryDate != null
+                    && "Pendiente".equalsIgnoreCase(task.getStatus())) {
+
+                long diffMillis = deliveryDate.getTime() - System.currentTimeMillis();
+                long daysRemaining = diffMillis / (1000 * 60 * 60 * 24);
+
+                if (daysRemaining >= 0 && daysRemaining <= 3) {
+
+                    Assistant assistant = AssistantController
+                            .findByName(task.getAssignedTo());
+
+                    if (assistant != null) {
+                        EmailSender.sendTaskNotification(
+                                assistant.getEmail(),
+                                assistant.getName(),
+                                task.getDescription(),
+                                deliveryDate
+                        );
+                    }
+                }
             }
 
             tasks.add(task);
