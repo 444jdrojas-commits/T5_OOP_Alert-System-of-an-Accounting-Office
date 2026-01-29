@@ -193,14 +193,6 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblIndicatorAssistant">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder>
-                      <Color PropertyName="highlight" blue="0" green="0" red="0" type="rgb"/>
-                      <Color PropertyName="shadow" blue="0" green="0" red="0" type="rgb"/>
-                    </EtchetBorder>
-                  </Border>
-                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="4">
                     <Column editable="true" title="Asistente" type="java.lang.Object"/>
@@ -317,14 +309,6 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblIndicatorCustomer">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder>
-                      <Color PropertyName="highlight" blue="0" green="0" red="0" type="rgb"/>
-                      <Color PropertyName="shadow" blue="0" green="0" red="0" type="rgb"/>
-                    </EtchetBorder>
-                  </Border>
-                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="4">
                     <Column editable="true" title="Cliente" type="java.lang.Object"/>
@@ -440,9 +424,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnReturn">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="d7" red="a5" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Volver al Menu"/>
           </Properties>
           <Events>

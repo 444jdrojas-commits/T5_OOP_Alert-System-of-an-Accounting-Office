@@ -2,21 +2,11 @@ package ec.edu.espe.alertsystem.view;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import ec.edu.espe.alertsystem.controller.MongoConnection;
 import ec.edu.espe.alertsystem.controller.PerformanceIndicatorController;
-import ec.edu.espe.alertsystem.model.Address;
-import ec.edu.espe.alertsystem.model.Business;
-import ec.edu.espe.alertsystem.model.Customer;
-import ec.edu.espe.alertsystem.model.NaturalPerson;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 import static utils.Manage.loadCustomersComboBox;
@@ -39,6 +29,7 @@ public class FrmPerformanceIndicator extends javax.swing.JFrame {
         loadIndicatorAssistant();
         loadIndicatorCustomer();
         loadCustomersComboBox(cmbCustomer, true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -102,7 +93,6 @@ public class FrmPerformanceIndicator extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Desempeño por Asistente");
 
-        tblIndicatorAssistant.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         tblIndicatorAssistant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -144,7 +134,6 @@ public class FrmPerformanceIndicator extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Desempeño por Cliente");
 
-        tblIndicatorCustomer.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         tblIndicatorCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -210,7 +199,6 @@ public class FrmPerformanceIndicator extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(200, 185, 255));
 
-        btnReturn.setBackground(new java.awt.Color(165, 215, 255));
         btnReturn.setText("Volver al Menu");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -32,6 +32,7 @@ public class FrmCompleteTask extends javax.swing.JFrame {
     public FrmCompleteTask() {
         initComponents();
         loadTaskComboBox();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -124,7 +125,6 @@ public class FrmCompleteTask extends javax.swing.JFrame {
             }
         });
 
-        btnReturn.setBackground(new java.awt.Color(165, 215, 255));
         btnReturn.setText("Volver al Menu");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

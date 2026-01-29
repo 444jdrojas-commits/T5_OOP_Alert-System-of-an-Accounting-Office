@@ -13,6 +13,7 @@ public class FrmAlertSystemSplash extends javax.swing.JFrame {
      */
     public FrmAlertSystemSplash() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

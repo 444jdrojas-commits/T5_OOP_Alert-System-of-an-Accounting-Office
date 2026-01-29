@@ -1,21 +1,14 @@
 package ec.edu.espe.alertsystem.view;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
-import ec.edu.espe.alertsystem.controller.AssistantController;
 import ec.edu.espe.alertsystem.controller.MongoConnection;
 import ec.edu.espe.alertsystem.controller.TaskController;
 import ec.edu.espe.alertsystem.model.Task;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.bson.Document;
-import org.bson.conversions.Bson;
 import utils.Manage;
 import utils.Validation;
 
@@ -34,6 +27,7 @@ public class FrmManageTask extends javax.swing.JFrame {
         initComponents();
         Manage.loadAssistantsComboBox(cmbAssistant, true);
         loadTaskTableWithFilters("", "Todos", "Todos");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -76,7 +70,6 @@ public class FrmManageTask extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
         btnReturnToMenu = new javax.swing.JButton();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
@@ -165,8 +158,8 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(200, 185, 255));
 
-        jLabel1.setText("TAREA");
         jLabel1.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        jLabel1.setText("TAREA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,11 +180,11 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(200, 185, 255));
 
-        jLabel2.setText("Buscar por:");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Buscar por:");
 
-        jLabel3.setText("Asistente:");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Asistente:");
 
         cmbAssistant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,16 +192,15 @@ public class FrmManageTask extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Nombre Cliente:");
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Nombre Cliente:");
 
         txtName.setToolTipText("Solo Letras");
 
-        jLabel5.setText("Estado:");
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Estado:");
 
         btnFind.setText("Buscar");
-        btnFind.setBackground(new java.awt.Color(165, 215, 255));
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
@@ -262,7 +254,6 @@ public class FrmManageTask extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(200, 185, 255));
 
-        tblTask.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         tblTask.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -289,14 +280,13 @@ public class FrmManageTask extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         jPanel4.setBackground(new java.awt.Color(200, 185, 255));
 
         btnUpdate.setText("Actualizar");
-        btnUpdate.setBackground(new java.awt.Color(165, 215, 255));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -304,41 +294,14 @@ public class FrmManageTask extends javax.swing.JFrame {
         });
 
         btnDelete.setText("Eliminar");
-        btnDelete.setBackground(new java.awt.Color(165, 215, 255));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Opciones:");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel6)
-                .addGap(136, 136, 136)
-                .addComponent(btnUpdate)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete)
-                .addContainerGap(320, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(jLabel6))
-                .addContainerGap())
-        );
-
-        jPanel6.setBackground(new java.awt.Color(200, 185, 255));
+        jLabel6.setText("Opciones:");
 
         btnReturnToMenu.setText("Volver al Menu");
         btnReturnToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -347,21 +310,31 @@ public class FrmManageTask extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnReturnToMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete)
+                .addGap(21, 21, 21))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(btnReturnToMenu)
-                .addContainerGap())
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnUpdate)
+                    .addComponent(jLabel6)
+                    .addComponent(btnReturnToMenu))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jMenu5.setText("Perfil");
@@ -408,8 +381,7 @@ public class FrmManageTask extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -423,8 +395,7 @@ public class FrmManageTask extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -700,7 +671,6 @@ public class FrmManageTask extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTask;
     private javax.swing.JTextField txtName;

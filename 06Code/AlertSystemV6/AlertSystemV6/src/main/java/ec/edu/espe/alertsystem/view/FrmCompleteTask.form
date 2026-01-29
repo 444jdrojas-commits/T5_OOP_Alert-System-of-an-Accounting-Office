@@ -203,9 +203,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnReturn">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="d7" red="a5" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Volver al Menu"/>
           </Properties>
           <Events>

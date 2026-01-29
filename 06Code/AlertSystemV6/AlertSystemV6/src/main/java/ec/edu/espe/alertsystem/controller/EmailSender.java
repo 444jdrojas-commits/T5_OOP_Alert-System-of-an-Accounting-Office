@@ -31,8 +31,6 @@ public class EmailSender {
             }
         });
     }
-
-    // ================= FACTURA =================
     public static void sendInvoiceByEmail(
             String toEmail,
             String clientName,
@@ -68,14 +66,12 @@ public class EmailSender {
             message.setContent(multipart);
 
             Transport.send(message);
-            System.out.println("Factura enviada a " + toEmail);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // ================= NOTIFICACIÓN DE TAREA =================
     public static void sendTaskNotification(
             String toEmail,
             String assistantName,
@@ -107,7 +103,6 @@ public class EmailSender {
             );
 
             Transport.send(message);
-            System.out.println("Notificación enviada a " + toEmail);
 
         } catch (Exception e) {
             e.printStackTrace();
