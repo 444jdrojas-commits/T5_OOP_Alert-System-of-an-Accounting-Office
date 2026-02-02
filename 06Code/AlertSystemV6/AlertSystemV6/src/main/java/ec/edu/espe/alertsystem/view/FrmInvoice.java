@@ -29,6 +29,7 @@ public class FrmInvoice extends javax.swing.JFrame {
         loadInvoicesTable();
         calcularTotalTable();
         updateSumaTotal();
+        setLocationRelativeTo(null);
     }
 
     /**

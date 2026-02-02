@@ -30,7 +30,6 @@ public class Business extends Customer {
         
     }
 
-    // getters y setters
     public String getName() {
         return name;
     }

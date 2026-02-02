@@ -41,6 +41,7 @@ public class FrmManageCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -189,14 +190,14 @@ public class FrmManageCustomer extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -230,27 +231,27 @@ public class FrmManageCustomer extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnReturnToMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(44, 44, 44)
-                .addComponent(btnUpdate)
                 .addGap(18, 18, 18)
+                .addComponent(btnUpdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDelete)
-                .addGap(40, 40, 40))
+                .addGap(28, 28, 28))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(jLabel6)
                     .addComponent(btnReturnToMenu))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Perfil");
@@ -301,9 +302,8 @@ public class FrmManageCustomer extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -332,90 +332,9 @@ public class FrmManageCustomer extends javax.swing.JFrame {
         buscarClientes(tipo, nombre, ruc);
     }//GEN-LAST:event_btnFindActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        int fila = tblCustomer.getSelectedRow();
-
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un cliente para eliminar");
-            return;
-        }
-
-        String id = tblCustomer.getValueAt(fila, 0).toString(); // CI / RUC
-        String tipo = tblCustomer.getValueAt(fila, 1).toString();
-
-        int confirm = JOptionPane.showConfirmDialog(
-                this,
-                "¿Está seguro de eliminar este cliente?\nEsta acción no se puede deshacer.",
-                "Confirmar eliminación",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE
-        );
-
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-
-        if (tipo.equals("Persona Natural")) {
-            deleteNaturalPerson(id);
-        } else {
-            deleteBussines(id);
-        }
-
-        JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
-        loadTable();
-
-
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
 
     }//GEN-LAST:event_txtNameActionPerformed
-
-    private void btnReturnToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToMenuActionPerformed
-        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
-        frmAlertSystemMenuBoss.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnReturnToMenuActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
-        int fila = tblCustomer.getSelectedRow();
-
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un cliente para actualizar");
-            return;
-        }
-
-        String id = tblCustomer.getValueAt(fila, 0).toString(); 
-        String tipo = tblCustomer.getValueAt(fila, 1).toString();
-        String nombre = tblCustomer.getValueAt(fila, 2).toString();
-        String telefono = tblCustomer.getValueAt(fila, 3).toString();
-        String correo = tblCustomer.getValueAt(fila, 4).toString();
-        String ciudad = tblCustomer.getValueAt(fila, 5).toString();
-
-        int confirm = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea actualizar los datos del cliente?",
-                "Confirmar",
-                JOptionPane.YES_NO_OPTION
-        );
-
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-
-        if (tipo.equals("Persona Natural")) {
-            updateNaturalPerson(id, nombre, telefono, correo, ciudad);
-        } else {
-            updateBussines(id, nombre, telefono, correo, ciudad);
-        }
-
-        JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente");
-        loadTable();
-
-
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void MnuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuLogOutActionPerformed
         FrmAlertSystemLogin frmAlertSystemLogin = new FrmAlertSystemLogin();
@@ -432,6 +351,84 @@ public class FrmManageCustomer extends javax.swing.JFrame {
         frmAlertSystemMenuBoss.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MnuBacktoMenuActionPerformed
+
+    private void btnReturnToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToMenuActionPerformed
+        FrmAlertSystemMenuBoss frmAlertSystemMenuBoss = new FrmAlertSystemMenuBoss();
+        frmAlertSystemMenuBoss.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReturnToMenuActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        int fila = tblCustomer.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para eliminar");
+            return;
+        }
+
+        String id = tblCustomer.getValueAt(fila, 0).toString();
+        String tipo = tblCustomer.getValueAt(fila, 1).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro de eliminar este cliente?\nEsta acción no se puede deshacer.",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (tipo.equals("Persona Natural")) {
+            deleteNaturalPerson(id);
+        } else {
+            deleteBussines(id);
+        }
+
+        JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
+        loadTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        int fila = tblCustomer.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para actualizar");
+            return;
+        }
+
+        String id = tblCustomer.getValueAt(fila, 0).toString();
+        String tipo = tblCustomer.getValueAt(fila, 1).toString();
+        String nombre = tblCustomer.getValueAt(fila, 2).toString();
+        String telefono = tblCustomer.getValueAt(fila, 3).toString();
+        String correo = tblCustomer.getValueAt(fila, 4).toString();
+        String ciudad = tblCustomer.getValueAt(fila, 5).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "¿Desea actualizar los datos del cliente?",
+            "Confirmar",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (tipo.equals("Persona Natural")) {
+            updateNaturalPerson(id, nombre, telefono, correo, ciudad);
+        } else {
+            updateBussines(id, nombre, telefono, correo, ciudad);
+        }
+
+        JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente");
+        loadTable();
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void loadTable() {
 
@@ -555,7 +552,6 @@ public class FrmManageCustomer extends javax.swing.JFrame {
         }
     }
 
-  
     /**
      * @param args the command line arguments
      */
@@ -589,6 +585,7 @@ public class FrmManageCustomer extends javax.swing.JFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnReturnToMenu;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbTypeCustomer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

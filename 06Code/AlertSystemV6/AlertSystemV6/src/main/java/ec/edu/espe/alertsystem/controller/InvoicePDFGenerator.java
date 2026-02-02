@@ -15,6 +15,7 @@ import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import ec.edu.espe.alertsystem.model.Customer;
 import java.io.File;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 
 /**
@@ -138,12 +139,15 @@ public class InvoicePDFGenerator {
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-            String logoPath = InvoicePDFGenerator.class
+            InputStream logoStream = InvoicePDFGenerator.class
                     .getClassLoader()
-                    .getResource("pena.png")
-                    .getPath();
+                    .getResourceAsStream("pena.png");
 
-            ImageData imageData = ImageDataFactory.create(logoPath);
+            if (logoStream == null) {
+                throw new RuntimeException("No se encontró pena.png en resources");
+            }
+
+            ImageData imageData = ImageDataFactory.create(logoStream.readAllBytes());
             Image logo = new Image(imageData);
 
             logo.setWidth(100);
@@ -163,7 +167,6 @@ public class InvoicePDFGenerator {
 
             document.add(new Paragraph("\n"));
 
-            // 🔹 DATOS DEL CLIENTE
             document.add(new Paragraph("Cliente: " + customer.getName()));
             document.add(new Paragraph("Correo: " + customer.getEmail()));
 
