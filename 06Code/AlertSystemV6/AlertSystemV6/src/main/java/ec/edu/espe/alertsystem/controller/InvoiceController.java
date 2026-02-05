@@ -2,11 +2,7 @@ package ec.edu.espe.alertsystem.controller;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Sorts;
 import ec.edu.espe.alertsystem.model.Invoice;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,12 +63,12 @@ public class InvoiceController {
         return invoices;
     }
 
-    public static double calcularIva(double subtotal) {
-        return subtotal * 0.15;
+    public static double calculateIva(double subtotal) {
+        return subtotal * utils.TaxConfig.getInstance().getIva();
     }
 
-    public static double calcularTotal(double subtotal) {
-        return subtotal + calcularIva(subtotal);
+    public static double calculateTotal(double subtotal) {
+        return subtotal + calculateIva(subtotal);
     }
 
     public static void actualizarPagoFactura(int invoiceNumber, Date paymentDate) {
@@ -121,5 +117,4 @@ public class InvoiceController {
         }
         return null;
     }
-
 }

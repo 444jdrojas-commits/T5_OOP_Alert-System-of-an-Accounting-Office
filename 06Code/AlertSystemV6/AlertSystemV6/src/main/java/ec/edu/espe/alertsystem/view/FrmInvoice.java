@@ -6,12 +6,14 @@ import ec.edu.espe.alertsystem.controller.InvoiceController;
 import ec.edu.espe.alertsystem.controller.InvoicePDFGenerator;
 import ec.edu.espe.alertsystem.model.Customer;
 import ec.edu.espe.alertsystem.model.Invoice;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
+import utils.TaxConfig;
 
 /**
  *
@@ -29,6 +31,7 @@ public class FrmInvoice extends javax.swing.JFrame {
         loadInvoicesTable();
         calcularTotalTable();
         updateSumaTotal();
+        txtIVA.setText(String.valueOf(TaxConfig.getInstance().getIva()));
         setLocationRelativeTo(null);
     }
 
@@ -48,10 +51,13 @@ public class FrmInvoice extends javax.swing.JFrame {
         tblInvoice = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtIVA = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnReturn = new javax.swing.JButton();
         btnCompletePayment = new javax.swing.JButton();
         btnGenerateInvoice = new javax.swing.JButton();
+        btnChangeIva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MnuLogOut = new javax.swing.JMenuItem();
@@ -76,7 +82,7 @@ public class FrmInvoice extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Numero de Factura", "Dia de Pago", "Subtotal", "Total", "Detalles", "Estado"
+                "Numero Factura", "Dia de Pago", "Subtotal", "Total", "Detalles", "Estado"
             }
         ));
         jScrollPane1.setViewportView(tblInvoice);
@@ -85,6 +91,14 @@ public class FrmInvoice extends javax.swing.JFrame {
         jLabel2.setText("Total:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jLabel4.setText("IVA Actual:");
+
+        txtIVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIVAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,10 +109,14 @@ public class FrmInvoice extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -107,9 +125,13 @@ public class FrmInvoice extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -136,6 +158,13 @@ public class FrmInvoice extends javax.swing.JFrame {
             }
         });
 
+        btnChangeIva.setText("Cambiar IVA");
+        btnChangeIva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeIvaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -143,11 +172,13 @@ public class FrmInvoice extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnReturn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCompletePayment)
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerateInvoice)
-                .addGap(85, 85, 85))
+                .addGap(18, 18, 18)
+                .addComponent(btnChangeIva)
+                .addGap(44, 44, 44))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +187,8 @@ public class FrmInvoice extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn)
                     .addComponent(btnCompletePayment)
-                    .addComponent(btnGenerateInvoice))
+                    .addComponent(btnGenerateInvoice)
+                    .addComponent(btnChangeIva))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -250,7 +282,7 @@ public class FrmInvoice extends javax.swing.JFrame {
             return;
         }
 
-        String status = (String) tblInvoice.getValueAt(selectedRow, 5); // Columna Estado
+        String status = (String) tblInvoice.getValueAt(selectedRow, 5);
         if ("Pagado".equalsIgnoreCase(status)) {
             JOptionPane.showMessageDialog(this, "La factura ya está pagada.");
             return;
@@ -347,9 +379,43 @@ public class FrmInvoice extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this,
                 "Factura generada y enviada al correo del cliente");
-
-
     }//GEN-LAST:event_btnGenerateInvoiceActionPerformed
+
+    private void txtIVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIVAActionPerformed
+
+    }//GEN-LAST:event_txtIVAActionPerformed
+
+    private void btnChangeIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeIvaActionPerformed
+
+        try {
+            double nuevoIva = Double.parseDouble(
+                    txtIVA.getText().replace(",", ".")
+            );
+
+            if (nuevoIva <= 0 || nuevoIva >= 1) {
+                JOptionPane.showMessageDialog(this,
+                        "El IVA debe ser un valor entre 0 y 1");
+                return;
+            }
+
+            TaxConfig.getInstance().setIva(nuevoIva);
+
+            loadInvoicesTable();
+            calcularTotalTable();
+            updateSumaTotal();
+
+            JOptionPane.showMessageDialog(this,
+                    "IVA actualizado correctamente");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Ingrese un valor numérico válido");
+        }
+        String FILE_PATH;
+        System.out.println("Guardando IVA en: " + new File(FILE_PATH).getAbsolutePath());
+
+
+    }//GEN-LAST:event_btnChangeIvaActionPerformed
 
     private void loadInvoicesTable() {
 
@@ -376,7 +442,7 @@ public class FrmInvoice extends javax.swing.JFrame {
             }
 
             double subtotal = doc.getDouble("amountPaid");
-            double total = InvoiceController.calcularTotal(subtotal);
+            double total = InvoiceController.calculateTotal(subtotal);
 
             String details = doc.getString("details");
 
@@ -404,7 +470,7 @@ public class FrmInvoice extends javax.swing.JFrame {
 
                 try {
                     double subtotal = Double.parseDouble(subtotalStr);
-                    double total = InvoiceController.calcularTotal(subtotal);
+                    double total = InvoiceController.calculateTotal(subtotal);
 
                     model.setValueAt(
                             String.format("%.2f", total),
@@ -468,12 +534,14 @@ public class FrmInvoice extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuBacktoMenu;
     private javax.swing.JMenuItem MnuExite;
     private javax.swing.JMenuItem MnuLogOut;
+    private javax.swing.JButton btnChangeIva;
     private javax.swing.JButton btnCompletePayment;
     private javax.swing.JButton btnGenerateInvoice;
     private javax.swing.JButton btnReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -482,5 +550,6 @@ public class FrmInvoice extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblInvoice;
+    private javax.swing.JTextField txtIVA;
     // End of variables declaration//GEN-END:variables
 }

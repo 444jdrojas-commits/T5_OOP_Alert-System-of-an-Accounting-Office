@@ -13,6 +13,7 @@ ec\edu\espe\alertsystem\controller\LoginController.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuBoss$4.class
 ec\edu\espe\alertsystem\view\FrmManageCustomer$5.class
 ec\edu\espe\alertsystem\view\FrmSeeMyTask.class
+ec\edu\espe\alertsystem\view\FrmInvoice$8.class
 ec\edu\espe\alertsystem\view\FrmManageTask$10.class
 ec\edu\espe\alertsystem\view\FrmTask$4.class
 ec\edu\espe\alertsystem\view\FrmAddBussines$8.class
@@ -99,7 +100,9 @@ ec\edu\espe\alertsystem\controller\UserController.class
 ec\edu\espe\alertsystem\view\FrmTask$6.class
 ec\edu\espe\alertsystem\view\FrmManageTask.class
 ec\edu\espe\alertsystem\view\FrmSeeMyAlerts.class
+utils\TaxConfig.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemMenuBoss$5.class
+ec\edu\espe\alertsystem\view\FrmInvoice$7.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemLogin$1.class
 ec\edu\espe\alertsystem\view\FrmTask$3.class
 ec\edu\espe\alertsystem\view\FrmAlertSystemLogin$3.class

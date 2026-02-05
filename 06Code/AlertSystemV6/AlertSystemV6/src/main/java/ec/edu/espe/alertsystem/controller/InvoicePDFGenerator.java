@@ -5,7 +5,6 @@ import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import ec.edu.espe.alertsystem.model.Invoice;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
