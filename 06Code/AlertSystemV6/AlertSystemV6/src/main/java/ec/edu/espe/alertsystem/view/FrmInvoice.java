@@ -6,7 +6,6 @@ import ec.edu.espe.alertsystem.controller.InvoiceController;
 import ec.edu.espe.alertsystem.controller.InvoicePDFGenerator;
 import ec.edu.espe.alertsystem.model.Customer;
 import ec.edu.espe.alertsystem.model.Invoice;
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -411,9 +410,6 @@ public class FrmInvoice extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "Ingrese un valor numérico válido");
         }
-        String FILE_PATH;
-        System.out.println("Guardando IVA en: " + new File(FILE_PATH).getAbsolutePath());
-
 
     }//GEN-LAST:event_btnChangeIvaActionPerformed
 
