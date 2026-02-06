@@ -1,0 +1,124 @@
+package ec.edu.espe.alertsystem.controller;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Sorts;
+import ec.edu.espe.alertsystem.model.Assistant;
+import org.bson.Document;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author Paulo Ramos
+ */
+public class AssistantController {
+
+    public int generateUniqueId() {
+        MongoCollection<Document> collection = MongoConnection.getConnection().getCollection("assistants");
+
+        Document lastDoc = collection.find()
+                .sort(Sorts.descending("id"))
+                .first();
+
+        if (lastDoc == null) {
+            return 1;
+        } else {
+            return lastDoc.getInteger("id") + 1;
+        }
+    }
+
+    public boolean addAssistant(String name, Date birthDate, String phone, String email, String user, String password) {
+        int newId = generateUniqueId();
+        return save(newId, name, birthDate, phone, email, user, password);
+    }
+
+    public boolean save(int id, String name, Date birthDate, String phone, String email, String user, String password) {
+        try {
+            MongoCollection<Document> collection = MongoConnection.getConnection().getCollection("assistants");
+
+            Document doc = new Document()
+                    .append("id", id)
+                    .append("name", name)
+                    .append("birthDate", birthDate)
+                    .append("phone", phone)
+                    .append("email", email)
+                    .append("user", user)
+                    .append("password", password);
+
+            collection.insertOne(doc);
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Error MongoDB: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public List<Document> getAll() {
+        MongoCollection<Document> collection = MongoConnection.getConnection().getCollection("assistants");
+
+        List<Document> list = new ArrayList<>();
+
+        for (Document doc : collection.find()) {
+            doc.append("type", "Assistant");
+            list.add(doc);
+        }
+
+        return list;
+    }
+
+    public static Map<String, String> getAssistantMap() {
+
+        Map<String, String> map = new HashMap<>();
+
+        MongoCollection<Document> assistants
+                = MongoConnection.getConnection().getCollection("assistants");
+
+        for (Document doc : assistants.find()) {
+            map.put(
+                    String.valueOf(doc.get("id")),
+                    doc.getString("name")
+            );
+
+        }
+
+        return map;
+    }
+
+    public static Assistant findByName(String name) {
+
+        MongoCollection<Document> collection
+                = MongoConnection.getConnection().getCollection("assistants");
+
+        Document doc = collection.find(
+                Filters.eq("name", name)
+        ).first();
+
+        if (doc == null) {
+            return null;
+        }
+
+        Assistant assistant = new Assistant();
+
+        assistant.setId(doc.getInteger("id"));
+        assistant.setName(doc.getString("name"));
+        Object birthObj = doc.get("birthDate");
+
+        if (birthObj instanceof Date) {
+            assistant.setBirthDate((Date) birthObj);
+        }
+
+        assistant.setPhone(doc.getString("phone"));
+        assistant.setEmail(doc.getString("email"));
+        assistant.setUser(doc.getString("user"));
+        assistant.setPassword(doc.getString("password"));
+
+        return assistant;
+    }
+
+}

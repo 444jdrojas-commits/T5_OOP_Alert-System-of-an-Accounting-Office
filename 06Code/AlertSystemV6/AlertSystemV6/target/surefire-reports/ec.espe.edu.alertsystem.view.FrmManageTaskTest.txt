@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ec.espe.edu.alertsystem.view.FrmManageTaskTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 28.43 s -- in ec.espe.edu.alertsystem.view.FrmManageTaskTest
